@@ -54,10 +54,7 @@ struct AnimationConfig {
 
 // MARK: - Constants
 struct AppConstants {
-    static let hintCostCoins = 50
     static let dailyBonusCoins = 50
-    static let purchaseHintsCount = 5
-    static let purchaseHintsCost = 200
     
     static let minPuzzleTime: TimeInterval = 10
     static let maxPuzzleTime: TimeInterval = 600

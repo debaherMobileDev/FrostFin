@@ -164,16 +164,17 @@ struct PuzzleView: View {
             }) {
                 HStack {
                     Image(systemName: "lightbulb.fill")
-                    Text("Hint (\(userService.currentUser.hintsAvailable))")
+                    Text("Hint (\(viewModel.hintsRemaining)/3)")
                 }
                 .foregroundColor(.white)
                 .padding()
                 .frame(maxWidth: .infinity)
                 .background(
                     RoundedRectangle(cornerRadius: 15)
-                        .fill(Color.orange)
+                        .fill(viewModel.hintsRemaining > 0 ? Color.orange : Color.gray)
                 )
             }
+            .disabled(viewModel.hintsRemaining == 0)
             
             // Description
             VStack(alignment: .leading, spacing: 5) {

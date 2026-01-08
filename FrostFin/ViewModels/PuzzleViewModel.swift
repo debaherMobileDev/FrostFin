@@ -6,11 +6,14 @@ class PuzzleViewModel: ObservableObject {
     @Published var currentPuzzle: Puzzle
     @Published var moves: Int = 0
     @Published var hintsUsed: Int = 0
+    @Published var hintsRemaining: Int = 3
     @Published var isCompleted: Bool = false
     @Published var showHint: Bool = false
     @Published var currentHintIndex: Int = 0
     @Published var selectedElement: PuzzleElement?
     @Published var showCelebration: Bool = false
+    
+    private let maxHintsPerPuzzle = 3
     
     let timer = PuzzleTimer()
     private let puzzleService = PuzzleService.shared
@@ -122,20 +125,15 @@ class PuzzleViewModel: ObservableObject {
     
     func useHint() {
         guard currentHintIndex < currentPuzzle.hints.count else { return }
-        
-        // Try to use hint from user service
-        if userService.useHint() {
-            showHint = true
-            hintsUsed += 1
-            HapticFeedback.light()
-        } else {
-            // Try to buy hint with coins
-            if userService.spendCoins(AppConstants.hintCostCoins) {
-                showHint = true
-                hintsUsed += 1
-                HapticFeedback.light()
-            }
+        guard hintsRemaining > 0 else { 
+            HapticFeedback.error()
+            return 
         }
+        
+        showHint = true
+        hintsUsed += 1
+        hintsRemaining -= 1
+        HapticFeedback.light()
     }
     
     func nextHint() {
@@ -218,6 +216,7 @@ class PuzzleViewModel: ObservableObject {
         timer.start()
         moves = 0
         hintsUsed = 0
+        hintsRemaining = maxHintsPerPuzzle
         isCompleted = false
         showCelebration = false
         currentHintIndex = 0

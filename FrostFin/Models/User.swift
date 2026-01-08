@@ -39,7 +39,6 @@ struct LeaderboardEntry: Identifiable, Codable {
 struct User: Codable {
     var username: String
     var coins: Int
-    var hintsAvailable: Int
     var puzzlesSolved: Int
     var dailyStreak: Int
     var lastPlayedDate: Date?
@@ -50,10 +49,9 @@ struct User: Codable {
     var selectedTheme: String
     var bestTime: TimeInterval
     
-    init(username: String = "Player", coins: Int = 100, hintsAvailable: Int = 3, puzzlesSolved: Int = 0, dailyStreak: Int = 0, lastPlayedDate: Date? = nil, totalScore: Int = 0, unlockedFish: [UUID] = [], achievements: [Achievement] = [], selectedAvatar: String = "default", selectedTheme: String = "arctic", bestTime: TimeInterval = 0) {
+    init(username: String = "Player", coins: Int = 100, puzzlesSolved: Int = 0, dailyStreak: Int = 0, lastPlayedDate: Date? = nil, totalScore: Int = 0, unlockedFish: [UUID] = [], achievements: [Achievement] = [], selectedAvatar: String = "default", selectedTheme: String = "arctic", bestTime: TimeInterval = 0) {
         self.username = username
         self.coins = coins
-        self.hintsAvailable = hintsAvailable
         self.puzzlesSolved = puzzlesSolved
         self.dailyStreak = dailyStreak
         self.lastPlayedDate = lastPlayedDate

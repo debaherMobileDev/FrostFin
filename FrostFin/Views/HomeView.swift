@@ -87,21 +87,6 @@ struct HomeView: View {
                     Capsule()
                         .fill(Color.white.opacity(0.2))
                 )
-                
-                // Hints
-                HStack(spacing: 5) {
-                    Image(systemName: "lightbulb.fill")
-                        .foregroundColor(.orange)
-                    Text("\(userService.currentUser.hintsAvailable)")
-                        .fontWeight(.bold)
-                        .foregroundColor(.white)
-                }
-                .padding(.horizontal, 12)
-                .padding(.vertical, 8)
-                .background(
-                    Capsule()
-                        .fill(Color.white.opacity(0.2))
-                )
             }
         }
         .padding()

@@ -63,27 +63,6 @@ class UserService: ObservableObject {
         saveUser()
     }
     
-    func spendCoins(_ amount: Int) -> Bool {
-        guard currentUser.coins >= amount else { return false }
-        currentUser.coins -= amount
-        saveUser()
-        return true
-    }
-    
-    func useHint() -> Bool {
-        guard currentUser.hintsAvailable > 0 else { return false }
-        currentUser.hintsAvailable -= 1
-        saveUser()
-        return true
-    }
-    
-    func buyHints(_ count: Int, cost: Int) -> Bool {
-        guard spendCoins(cost) else { return false }
-        currentUser.hintsAvailable += count
-        saveUser()
-        return true
-    }
-    
     func completePuzzle(difficulty: PuzzleDifficulty, moves: Int, maxMoves: Int, timeSpent: TimeInterval) {
         currentUser.puzzlesSolved += 1
         

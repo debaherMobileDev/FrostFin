@@ -227,28 +227,6 @@ struct SettingsView: View {
             
             VStack(spacing: 0) {
                 Button(action: {
-                    // Buy hints
-                    if userService.buyHints(AppConstants.purchaseHintsCount, cost: AppConstants.purchaseHintsCost) {
-                        HapticFeedback.success()
-                    } else {
-                        HapticFeedback.error()
-                    }
-                }) {
-                    HStack {
-                        Image(systemName: "lightbulb.fill")
-                            .foregroundColor(.orange)
-                        Text("Buy 5 Hints (\(AppConstants.purchaseHintsCost) coins)")
-                            .foregroundColor(.primary)
-                        Spacer()
-                        Image(systemName: "chevron.right")
-                            .foregroundColor(.secondary)
-                    }
-                    .padding()
-                }
-                
-                Divider()
-                
-                Button(action: {
                     showResetAlert = true
                 }) {
                     HStack {
